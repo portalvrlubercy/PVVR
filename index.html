@@ -120,6 +120,21 @@
     display: flex;
     flex-direction: column;
 }
+
+@media (max-width: 600px) {
+  .options-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+  }
+  .card-option {
+    aspect-ratio: 1 / 1;
+  }
+  .card-option .caption {
+    font-size: 12px;
+    padding: 6px;
+  }
+}
+
 </style>
 </head>
 <body>
