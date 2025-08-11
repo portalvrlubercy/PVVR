@@ -14,26 +14,17 @@
     --input:#121212;
     --text:#eaeaea;
   }
- html,body{
+  html,body{
   height:100%;
   margin:0;
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.imgur.com/0X34KdE.png') no-repeat center center fixed;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('4acef07e-9517-4366-b3e0-8aaad63432f6.png') no-repeat center center fixed;
   background-size: cover;
   font-family: Inter,Segoe UI,Roboto,Arial,sans-serif;
   color: var(--text);
   font-size: 20px;
 }
-}
   .container{max-width:1100px;margin:24px auto;padding:20px;}
-  header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 80px;
-  text-align: center;
-}
+  header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
   .logo {
     width:64px;height:64px;border-radius:12px;
     background:linear-gradient(135deg,var(--accent1),var(--accent2));
@@ -65,18 +56,7 @@
     transition:transform .18s ease, box-shadow .18s ease;
   }
   .card-option:hover{transform:translateY(-6px);box-shadow:0 10px 40px rgba(255,0,80,0.06)}
-  .card-option {
-    display: flex;
-    flex-direction: column;
-}
-
-.card-option .media {
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-}
+  .card-option .media{width:100%;height:140px;background-size:cover;background-position:center}
   .card-option .caption{padding:10px;font-size:14px;color:#e6e6e6}
   .card-option .more{font-size:12px;color:#bfcfff;text-decoration:underline;display:block;margin-top:6px}
 
@@ -104,37 +84,7 @@
   .result{margin-left:12px;color:#bfeadf;font-weight:700}
 
   /* responsive */
- .card-option {
-    display: flex;
-    flex-direction: column;
-}
-
-.card-option .media {
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-} .card-option {
-    aspect-ratio: 1 / 1; /* карточка всегда квадратная */
-    display: flex;
-    flex-direction: column;
-}
-
-@media (max-width: 600px) {
-  .options-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 8px;
-  }
-  .card-option {
-    aspect-ratio: 1 / 1;
-  }
-  .card-option .caption {
-    font-size: 12px;
-    padding: 6px;
-  }
-}
-
+  @media(max-width:720px){ .centered input{max-width:100%} .card-option .media{height:120px} }
 </style>
 </head>
 <body>
@@ -215,84 +165,76 @@
 
 <script>
 /* Helper: normalize a drive link (/file/d/ID/view) -> uc link */
-function driveToUc(link){
-  if(!link) return link;
-  // if already uc
-  if(link.includes('uc?export=view&id=')) return link;
-  const m = link.match(/\/d\/([a-zA-Z0-9_-]+)/);
-  if(m && m[1]) return 'https://drive.google.com/uc?export=view&id=' + m[1];
-  // if it's a direct id already (rare)
-  return link;
-}
+// driveToUc удалена, используем прямые ссылки Imgur
 
 /* Data: servirovka variants (each variant contains array of media links) */
 const servirovka = [
-  // Variant 1 (1 links)
+  // Variant 1 (5 links)
   [
-    'https://i.imgur.com/2hIFzdQ.jpeg',
-    '',
-    '',
-    '',
-    ''
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg'
   ],
   // Variant 2 (mix: one view link converted + uc links)
   [
-    'https://i.imgur.com/oiLJV5h.jpeg'),
-    'https://drive.google.com/uc?export=view&id=1-oIJDDpQFXdUdwVd8kDyulw6vkztQ0r0',
-    'https://drive.google.com/uc?export=view&id=15SePeqhwEhSptch25LecqSYCKpiJjiQB',
-    'https://drive.google.com/uc?export=view&id=1fIL4cgQ3BLFjsZej6pnfAvz-TSvJi2LA'
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg'
   ],
   // Variant 3
   [
-    'https://drive.google.com/uc?export=view&id=1QfQglmzkQWcb2A_JUg_0MeA1Cire830j',
-    'https://drive.google.com/uc?export=view&id=1pCLV4VYSx014OPenzyg5eoyu4H89PMKH',
-    'https://drive.google.com/uc?export=view&id=1ETYYezyy__C_JjuF19zNjZuUltEuivRi'
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg'
   ],
   // Variant 4
   [
-    'https://drive.google.com/uc?export=view&id=1XxjkLh-bZHQZ7xiKdxr7iQMjByuNJGL-',
-    'https://drive.google.com/uc?export=view&id=1uACEK7F2_Jfb7H07Er-bkFxads-gIgFz',
-    'https://drive.google.com/uc?export=view&id=10391mF-er6Yt8bOfOLB4_MX4SYPgUrQM'
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg'
   ],
   // Variant 5
   [
-    'https://drive.google.com/uc?export=view&id=1I_KCgCagoVFvqucYOxaC3OPJMWTLIuGN',
-    'https://drive.google.com/uc?export=view&id=1o0Zxw_shj--dvIm8sDXIHeMIxGBHDCNo',
-    'https://drive.google.com/uc?export=view&id=1r1emn-xfLpQVn7hYpuAl9LrPAL2HZcYB'
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg'
   ],
   // Variant 6
   [
-    'https://drive.google.com/uc?export=view&id=1aGbtF8pY2d1L-WNGyIITChtNKcvWiiKu',
-    'https://drive.google.com/uc?export=view&id=1fCoAS9s79XSJ1EaXXR2tAqDqDAkNGC4K',
-    'https://drive.google.com/uc?export=view&id=1Vf_5maGKh1gijEDynnN0GOeS7Lh4c7i_'
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg'
   ],
   // Variant 7
   [
-    'https://drive.google.com/uc?export=view&id=1jIt_gP2ENKm3D-q78mCJ82gw3DRXCFzd',
-    'https://drive.google.com/uc?export=view&id=1N-9kryOUSlAquErm2NS1c86RnSXOFVOo',
-    'https://drive.google.com/uc?export=view&id=11b_w-CEtkCOYUHT4x5pZAMpnUo8kpQFq'
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg'
   ],
   // Variant 8
   [
-    'https://drive.google.com/uc?export=view&id=1Uv6Q062MHp-6FCvkyTfWFCNVRXzSQ20J',
-    'https://drive.google.com/uc?export=view&id=1DCE75SCt2n-BTsf7t03q6GfwuQ9jW16J',
-    'https://drive.google.com/uc?export=view&id=1CKemPnZJ-zrtKVdNpGY2xCT14aB_H8IQ'
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg'
   ],
   // Variant 9
   [
-    'https://drive.google.com/uc?export=view&id=1VKWN2zbT0z8uE-Icgv-keGK7jIwtn6KD',
-    'https://drive.google.com/uc?export=view&id=1G1ZrjXM6aQyUSJW59euI6oJguF_wHV25',
-    'https://drive.google.com/uc?export=view&id=1F53lUBZoaLNL_n6w866wUhy0aw7rrwN4',
-    'https://drive.google.com/uc?export=view&id=1UXCPQSk2jcF_6WUXm_SBbSDdbacmLYBc'
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg',
+    'https://i.imgur.com/abc1234.jpg'
   ]
 ];
 
 /* Balloons fountain examples (4 links) */
 const balloons = [
-  'https://drive.google.com/uc?export=view&id=1n74xjgnMHKL4qylQgrM9O1_KZ1qnJvY0',
-  'https://drive.google.com/uc?export=view&id=1HDLtpPiSfFBs8mXD5drebiHDsAF6ZSVj',
-  'https://drive.google.com/uc?export=view&id=1zHGM-tt8RxapnijwppEG18quf7TCLPoX',
-  'https://drive.google.com/uc?export=view&id=1tpvvKBoFC6-p2t7LE2xKDk000ev0GJ6O'
+  'https://i.imgur.com/abc1234.jpg',
+  'https://i.imgur.com/abc1234.jpg',
+  'https://i.imgur.com/abc1234.jpg',
+  'https://i.imgur.com/abc1234.jpg'
 ];
 
 /* Shows block: small selection mapping with media arrays and details text */
@@ -301,9 +243,9 @@ const shows = [
     id:'happybd',
     title:'Развлекательная программа “Happy BDay” — 60 мин (8000 ₽)',
     media:[
-      'https://drive.google.com/uc?export=view&id=13SrCNK7nPUKrkKqcxNJtDJN1ph9stp0W',
-      driveToUc('https://drive.google.com/file/d/1LFTJUi1ofJBLHpvR92CVqofBeiURbr-v/view?usp=sharing'),
-      'https://drive.google.com/uc?export=view&id=1c3yMDp-dSHwvrfcsbA5iTEdaDv8FQ2iH'
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg'
     ],
     more:'https://imgur.com/a/KBs6Hew'
   },
@@ -311,9 +253,9 @@ const shows = [
     id:'neon-disco',
     title:'Неоновая дискотека — 30 мин (6000 ₽)',
     media:[
-      'https://drive.google.com/uc?export=view&id=1QDJm6G8YgLJcv-asEbUYojQy6ja3gBdh',
-      'https://drive.google.com/uc?export=view&id=1GZ1C_IEqXNdVr0r41_GxTtSDmS-j7CSz',
-      'https://drive.google.com/uc?export=view&id=18tWu6g80qF7qJDKM8mx8Oerl6_o1CL4G'
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg'
     ],
     more:'https://imgur.com/a/62bgO8L'
   },
@@ -321,16 +263,16 @@ const shows = [
     id:'pinata',
     title:'Пиньята (3000 ₽)',
     media:[
-      'https://drive.google.com/uc?export=view&id=1q1BN7F1g8aesaf0t9hGtSm1Peq_bytCr',
-      'https://drive.google.com/uc?export=view&id=1J3epJ-dBh_f7onhRA-yi6MpDOWsUBoi_',
-      'https://drive.google.com/uc?export=view&id=1QG24eVDPJQD4n0CckIqcVTendBgk_yeX'
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg'
     ],
     more:'https://imgur.com/a/eBvy8p3'
   },
   {
     id:'surprise-box',
     title:'Коробка‑сюрприз (3000 ₽)',
-    media:['https://drive.google.com/uc?export=view&id=1mnbb2BR5ZUMo2fkyiPdH2XJlZDokWJj2'],
+    media:['https://i.imgur.com/abc1234.jpg'],
     more:'https://imgur.com/a/HxtXLup'
   },
   {
@@ -343,8 +285,8 @@ const shows = [
     id:'neon-bubbles',
     title:'Неоновые мыльные пузыри — 60 мин (11000 ₽)',
     media:[
-      'https://drive.google.com/uc?export=view&id=16KxIuY6roKAsHgoelfUEftS3e8t_DGrl',
-      'https://drive.google.com/uc?export=view&id=1Ou997caJKg_3UDI5iApjqgUnMR5ehTC9'
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg'
     ],
     more:'https://imgur.com/a/x10HsmX'
   },
@@ -364,8 +306,8 @@ const shows = [
     id:'squid-game',
     title:'Шоу "Игра в Кальмара" — 60 мин (7500 ₽)',
     media:[
-      'https://drive.google.com/uc?export=view&id=1cnGx0AtRexabO5YK0ubMvdeQ5ENk17vg',
-      'https://drive.google.com/uc?export=view&id=18rCP5Mo6GbMWCtNiyi_JNhXUuxJBSVpw'
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg'
     ],
     more:'https://imgur.com/a/kIW0aVU'
   },
@@ -379,8 +321,8 @@ const shows = [
     id:'trash',
     title:'ТРЕШ‑коробка / HARD — 5000 / 7000 ₽',
     media:[
-      'https://drive.google.com/uc?export=view&id=1Yaa4P0tvhQfQjvssoXAe3PqKzm4CRbnh',
-      'https://drive.google.com/uc?export=view&id=1r_o0M5m73x9XeP0v6cn8SLhTyAgFkF2r'
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg'
     ],
     more:'https://imgur.com/a/ghjxEy6'
   },
@@ -388,8 +330,8 @@ const shows = [
     id:'guess-drink',
     title:'"Угадай напиток" — 5000/7000 ₽',
     media:[
-      'https://drive.google.com/uc?export=view&id=12_4iPMNlHyz9_fCYApofM0TQh11vg_B4',
-      'https://drive.google.com/uc?export=view&id=1Vn8sUAtSPhbNTxKjQ1JKgyCsZMOcnE3k'
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg'
     ],
     more:'https://imgur.com/a/fOs1bdA'
   },
@@ -397,8 +339,8 @@ const shows = [
     id:'playboom',
     title:'"Play Boom" — 60 мин (7000 ₽)',
     media:[
-      'https://drive.google.com/uc?export=view&id=12AtCO1moKZjKClcgeXLkok1M-R5Vmm1y',
-      'https://drive.google.com/uc?export=view&id=1mPY0s2NQcA7Prhp1q77HnwlzPpK2iwPn'
+      'https://i.imgur.com/abc1234.jpg',
+      'https://i.imgur.com/abc1234.jpg'
     ],
     more:'https://imgur.com/a/dL8B4hS'
   },
@@ -406,7 +348,7 @@ const shows = [
     id:'cocktail',
     title:'Коктейль Party — 60 мин (7000 ₽)',
     media:[
-      'https://drive.google.com/uc?export=view&id=1eXTdwifbCckH0Z6wpHaJ0nIv5qY93vpP'
+      'https://i.imgur.com/abc1234.jpg'
     ],
     more:'https://imgur.com/a/Q8DAF3I'
   }
