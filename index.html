@@ -25,12 +25,15 @@
 }
 }
   .container{max-width:1100px;margin:24px auto;padding:20px;}
-  header{  display: flex;
-    justify-content: center; /* центрируем по горизонтали */
-    align-items: center;     /* выравниваем по вертикали */
-    gap: 10px;               /* расстояние между иконкой и текстом */
-    margin-top: 50px;        /* отступ сверху */
-    text-align: center;}
+  header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 80px;
+  text-align: center;
+}
   .logo {
     width:64px;height:64px;border-radius:12px;
     background:linear-gradient(135deg,var(--accent1),var(--accent2));
