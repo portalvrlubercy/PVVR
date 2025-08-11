@@ -252,8 +252,8 @@ function createVariantBlock(index, photos){
   photos.forEach((src, i) => {
     const card = document.createElement('div');
     card.className = 'photo-card';
-    card.innerHTML = `<div class="photo-thumb" style="background-image:url('${src}')" ></div>
-                      <div class="photo-caption"Фото ${i+1}</div>'>;
+    <div class="photo-thumb" style="background-image:url('${src}')"></div>
+  `;
     grid.appendChild(card);
   });
   wrap.appendChild(grid);
