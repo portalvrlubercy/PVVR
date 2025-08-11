@@ -42,7 +42,7 @@
 
   .photos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
   .photo-card{background:linear-gradient(180deg,rgba(18,18,20,0.7),rgba(12,12,14,0.7));border-radius:10px;overflow:hidden;cursor:default;position:relative;border:1px solid rgba(255,255,255,0.03)}
-  .photo-thumb{width:240px;aspect-ratio: 1 / 1;background-size:cover;background-position:center}
+  .photo-thumb{width:100%;aspect-ratio: 1 / 1;background-size:cover;background-position:center}
   .photo-caption{padding:8px;font-size:13px;color:#e6e6e6;text-align:center}
 
   /* shows grid */
@@ -61,8 +61,8 @@
   .submit-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
   .result{margin-left:12px;color:#bfeadf;font-weight:700}
 
-  @media (max-width:720px){
-    .photo-thumb{height:96px}
+  @media (max-width:240px){
+    .photo-thumb{height:240px}
     .shows-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
   }
 </style>
