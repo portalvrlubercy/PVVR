@@ -116,7 +116,7 @@
     background-size: cover;
     background-position: center;
 } .card-option {
-     /* карточка всегда квадратная */
+    aspect-ratio: 1 / 1; /* карточка всегда квадратная */
     display: flex;
     flex-direction: column;
 }
@@ -127,20 +127,12 @@
     gap: 8px;
   }
   .card-option {
-    
+    aspect-ratio: 1 / 1;
   }
   .card-option .caption {
     font-size: 12px;
     padding: 6px;
   }
-}
-
-
-.card-option img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
 }
 
 </style>
