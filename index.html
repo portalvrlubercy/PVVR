@@ -1,10 +1,10 @@
-<!DOCTYPE html> <!-- Определяет тип документа как HTML5 -->
-<html lang="ru"> <!-- Начало HTML-документа, язык: русский -->
-<head> <!-- Заголовочная часть документа -->
-<meta charset="utf-8" /> <!-- Кодировка документа UTF-8 -->
-<meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- Масштабирование и адаптивность для мобильных устройств -->
-<title>PortalVR — Бронирование</title> <!-- Заголовок страницы -->
-<style> <!-- Начало стилей CSS -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PortalVR — Бронирование</title>
+<style>
   :root{
     --bg1:#06060a;
     --bg2:#0f0f13;
@@ -135,9 +135,9 @@
   }
 }
 
-</style> <!-- Конец стилей CSS -->
+</style>
 </head>
-<body> <!-- Начало содержимого страницы -->
+<body>
   <div class="container">
     <header>
       <div class="logo">PV</div>
@@ -148,7 +148,7 @@
     </header>
 
     <div class="card" id="mainCard">
-      <!-- Phone --> <!-- Блок для ввода номера телефона -->
+      <!-- Phone -->
       <div class="field">
         <label>Напишите номер телефона, на который вы поставили бронь</label>
         <div class="centered">
@@ -156,7 +156,7 @@
         </div>
       </div>
 
-      <!-- Name --> <!-- Блок для ввода имени и возраста -->
+      <!-- Name -->
       <div class="field">
         <label>Как зовут именинника/цу и сколько исполняется лет?</label>
         <div class="centered">
@@ -164,7 +164,7 @@
         </div>
       </div>
 
-      <!-- Guests --> <!-- Блок для ввода количества гостей -->
+      <!-- Guests -->
       <div class="field">
         <label>Уточните примерное кол-во гостей!</label>
         <div class="centered">
@@ -175,13 +175,13 @@
       <!-- spacer -->
       <div style="height:16px"></div>
 
-      <!-- Servirovka --> <!-- Раздел выбора сервировки стола -->
+      <!-- Servirovka -->
       <div class="section-title">Выберите сервировку стола</div>
       <div class="options-grid" id="servirovkaGrid">
         <!-- variant blocks will be injected by JS -->
       </div>
 
-      <!-- food link --> <!-- Ссылки для заказа еды и напитков -->
+      <!-- food link -->
       <p class="muted links" style="margin-top:12px">
         <a href="https://qsmenu.ru/vr-portal" target="_blank">Здесь можно заказать ЕДУ и НАПИТКИ от наших партнеров.</a> (доставка строго к согласованному с вами времени, оплата по факту получения)
       </p>
@@ -190,14 +190,14 @@
         <a href="https://disk.yandex.ru/d/3wBKih50e0TU_A" target="_blank">Здесь вы можете заказать кофе!</a> Скидка на предзаказ 20%
       </p>
 
-      <!-- Balloons info --> <!-- Информация о воздушных шарах -->
+      <!-- Balloons info -->
       <div class="section-title" style="margin-top:16px">Оформление воздушными шарами</div>
       <p class="muted">Оформление воздушными шарами уже включено в Пакет «Премиум» и «Премиум Плюс». Но вы можете приобрести шарики отдельно к любому из тарифов, как дополнительную услугу. Шар-цифра с гелием =1000 Малый фонтан с одной шаром-цифрой =2500 Малый фонтан две цифры =3000 Большой фонтан = 3500 ... Фото носят информативный характер.😉</p>
 
       <div class="section-title">Примеры фонтанов из воздушных шаров</div>
       <div class="options-grid" id="balloonsGrid"></div>
 
-      <!-- Show programs --> <!-- Выбор шоу программы -->
+      <!-- Show programs -->
       <div class="section-title" style="margin-top:18px">Выберите вариант с шоу программой!</div>
       <div class="options-grid" id="showsGrid"></div>
 
@@ -213,7 +213,7 @@
     </div>
   </div>
 
-<script> <!-- Начало JavaScript-кода -->
+<script>
 /* Helper: normalize a drive link (/file/d/ID/view) -> uc link */
 function driveToUc(link){
   if(!link) return link;
@@ -227,26 +227,63 @@ function driveToUc(link){
 
 /* Data: servirovka variants (each variant contains array of media links) */
 const servirovka = [
-  // Вариант 1
+  // Variant 1 (1 links)
   [
-    'https://i.imgur.com/2hIFzdQ.jpeg', // Пример ссылки Imgur
+    'https://i.imgur.com/2hIFzdQ.jpeg',
     '',
     '',
     '',
     ''
   ],
-  // Вариант 2
+  // Variant 2 (mix: one view link converted + uc links)
   [
-    'https://i.imgur.com/abc123.jpg',
-    'https://i.imgur.com/def456.jpg',
-    'https://i.imgur.com/ghi789.jpg',
-    'https://i.imgur.com/jkl012.jpg'
+    driveToUc('https://drive.google.com/file/d/1ZT-NsuQGxGmhflHPnlhG5TGOsu-83GJZ/view?usp=sharing'),
+    'https://drive.google.com/uc?export=view&id=1-oIJDDpQFXdUdwVd8kDyulw6vkztQ0r0',
+    'https://drive.google.com/uc?export=view&id=15SePeqhwEhSptch25LecqSYCKpiJjiQB',
+    'https://drive.google.com/uc?export=view&id=1fIL4cgQ3BLFjsZej6pnfAvz-TSvJi2LA'
   ],
-  // Вариант 3
+  // Variant 3
   [
-    'https://i.imgur.com/mno345.jpg',
-    'https://i.imgur.com/pqr678.jpg',
-    'https://i.imgur.com/stu901.jpg'
+    'https://drive.google.com/uc?export=view&id=1QfQglmzkQWcb2A_JUg_0MeA1Cire830j',
+    'https://drive.google.com/uc?export=view&id=1pCLV4VYSx014OPenzyg5eoyu4H89PMKH',
+    'https://drive.google.com/uc?export=view&id=1ETYYezyy__C_JjuF19zNjZuUltEuivRi'
+  ],
+  // Variant 4
+  [
+    'https://drive.google.com/uc?export=view&id=1XxjkLh-bZHQZ7xiKdxr7iQMjByuNJGL-',
+    'https://drive.google.com/uc?export=view&id=1uACEK7F2_Jfb7H07Er-bkFxads-gIgFz',
+    'https://drive.google.com/uc?export=view&id=10391mF-er6Yt8bOfOLB4_MX4SYPgUrQM'
+  ],
+  // Variant 5
+  [
+    'https://drive.google.com/uc?export=view&id=1I_KCgCagoVFvqucYOxaC3OPJMWTLIuGN',
+    'https://drive.google.com/uc?export=view&id=1o0Zxw_shj--dvIm8sDXIHeMIxGBHDCNo',
+    'https://drive.google.com/uc?export=view&id=1r1emn-xfLpQVn7hYpuAl9LrPAL2HZcYB'
+  ],
+  // Variant 6
+  [
+    'https://drive.google.com/uc?export=view&id=1aGbtF8pY2d1L-WNGyIITChtNKcvWiiKu',
+    'https://drive.google.com/uc?export=view&id=1fCoAS9s79XSJ1EaXXR2tAqDqDAkNGC4K',
+    'https://drive.google.com/uc?export=view&id=1Vf_5maGKh1gijEDynnN0GOeS7Lh4c7i_'
+  ],
+  // Variant 7
+  [
+    'https://drive.google.com/uc?export=view&id=1jIt_gP2ENKm3D-q78mCJ82gw3DRXCFzd',
+    'https://drive.google.com/uc?export=view&id=1N-9kryOUSlAquErm2NS1c86RnSXOFVOo',
+    'https://drive.google.com/uc?export=view&id=11b_w-CEtkCOYUHT4x5pZAMpnUo8kpQFq'
+  ],
+  // Variant 8
+  [
+    'https://drive.google.com/uc?export=view&id=1Uv6Q062MHp-6FCvkyTfWFCNVRXzSQ20J',
+    'https://drive.google.com/uc?export=view&id=1DCE75SCt2n-BTsf7t03q6GfwuQ9jW16J',
+    'https://drive.google.com/uc?export=view&id=1CKemPnZJ-zrtKVdNpGY2xCT14aB_H8IQ'
+  ],
+  // Variant 9
+  [
+    'https://drive.google.com/uc?export=view&id=1VKWN2zbT0z8uE-Icgv-keGK7jIwtn6KD',
+    'https://drive.google.com/uc?export=view&id=1G1ZrjXM6aQyUSJW59euI6oJguF_wHV25',
+    'https://drive.google.com/uc?export=view&id=1F53lUBZoaLNL_n6w866wUhy0aw7rrwN4',
+    'https://drive.google.com/uc?export=view&id=1UXCPQSk2jcF_6WUXm_SBbSDdbacmLYBc'
   ]
 ];
 
@@ -509,6 +546,6 @@ document.getElementById('sendBtn').addEventListener('click', function(e){
   // fetch('https://script.google.com/macros/s/ID/exec', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
   // .then(r=>r.json()).then(r=>{ ... })
 });
-</script> <!-- Конец JavaScript-кода -->
-</body> <!-- Конец содержимого страницы -->
+</script>
+</body>
 </html>
