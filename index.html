@@ -250,12 +250,13 @@ function createVariantBlock(index, photos){
   const grid = document.createElement('div');
   grid.className = 'photos-grid';
   photos.forEach((src, i) => {
-    const card = document.createElement('div');
-    card.className = 'photo-card';
+  const card = document.createElement('div');
+  card.className = 'photo-card';
+  card.innerHTML = `
     <div class="photo-thumb" style="background-image:url('${src}')"></div>
   `;
-    grid.appendChild(card);
-  });
+  grid.appendChild(card);
+});
   wrap.appendChild(grid);
 
   return wrap;
