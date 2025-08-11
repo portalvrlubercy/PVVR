@@ -421,7 +421,7 @@ function renderMediaGrid(container, mediaList, groupName){
     div.innerHTML = `
       <input type="radio" name="${groupName}" value="${src}">
       <div class="media" style="background-image:url('${src}')"></div>
-      <div class="caption">Фото ${idx+1}</div>
+      <div class="caption">Вариант ${idx+1}</div>
     `;
     // select logic
     div.addEventListener('click', () => {
@@ -445,7 +445,7 @@ servirovka.forEach((group, i) => {
   const title = document.createElement('div');
   title.style.margin='6px 0 8px';
   title.style.color='#d8d8d8';
-  title.textContent = 'Фото ' + (i+1);
+  title.textContent = Фото + (i+1);
   wrap.appendChild(title);
 
   const grid = document.createElement('div');
