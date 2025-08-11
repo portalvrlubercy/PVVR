@@ -71,11 +71,11 @@
 }
 
 .card-option .media {
+    flex: 1;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Соотношение сторон */
+    height: 100%;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 }
   .card-option .caption{padding:10px;font-size:14px;color:#e6e6e6}
   .card-option .more{font-size:12px;color:#bfcfff;text-decoration:underline;display:block;margin-top:6px}
@@ -110,13 +110,13 @@
 }
 
 .card-option .media {
+    flex: 1;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Соотношение сторон */
+    height: 100%;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 } .card-option {
-     /* карточка всегда квадратная */
+    aspect-ratio: 1 / 1; /* карточка всегда квадратная */
     display: flex;
     flex-direction: column;
 }
@@ -127,21 +127,12 @@
     gap: 8px;
   }
   .card-option {
-    
+    aspect-ratio: 1 / 1;
   }
   .card-option .caption {
     font-size: 12px;
     padding: 6px;
   }
-}
-
-
-.card-option .media {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Соотношение сторон */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 </style>
