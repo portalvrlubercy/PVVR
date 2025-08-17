@@ -424,7 +424,7 @@ h1 {
 Заполняй ссылки сюда (прямые URL). Все картинки можно заменить на Imgur.
 Формат: servirovka[variantIndex] = массив из 3 ссылок
 shows = массив объектов {id,title,media,more}
-balloons = массив ссылок
+balloons = массив объектов {id,title,price,media}
 ======================= */
 const servirovka = [
   // Вариант 1 (3 фото)
@@ -465,7 +465,7 @@ const servirovka = [
   ]
 ];
 
-// Баллоны (примеры)
+// Баллоны (примеры) - обновляем структуру
 const balloons = [
   {
     id: 'balloon1',
@@ -612,17 +612,21 @@ servirovka.forEach((photos, idx) => {
   servirovkaContainer.appendChild(createVariantBlock(idx, photos));
 });
 
-// Рендерим примеры шаров
-// Рендерим примеры шаров
+// Рендерим примеры шаров - ИСПРАВЛЯЕМ ВЫРАВНИВАНИЕ И ДОБАВЛЯЕМ ВЫБОР
 const balloonsContainer = document.getElementById('balloonsContainer');
 balloons.forEach((balloon, i) => {
   const card = document.createElement('div');
   card.className = 'photo-card';
-  card.innerHTML = `<div class="photo-thumb" style="background-image:url('${balloon.media}')"></div>
-                    <div class="photo-caption">
-                      <div style="font-weight: 600; margin-bottom: 4px; font-family: var(--font-primary);">${balloon.title}</div>
-                      <div style="color: var(--accent1); font-weight: 700; font-family: var(--font-primary);">${balloon.price}</div>
-                    </div>`;
+  card.innerHTML = `
+    <div class="photo-thumb" style="background-image:url('${balloon.media}')"></div>
+    <div class="photo-caption">
+      <div style="font-weight: 600; margin-bottom: 8px; font-family: var(--font-primary); text-align: center; min-height: 40px; display: flex; align-items: center; justify-content: center;">${balloon.title}</div>
+      <div style="color: var(--accent1); font-weight: 700; font-family: var(--font-primary); text-align: center; margin-bottom: 8px;">${balloon.price}</div>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <input type="radio" name="selectedBalloon" value="${balloon.id}" id="balloon_${balloon.id}">
+        <label for="balloon_${balloon.id}" style="color: #cfcfcf; font-size: 13px; font-family: var(--font-primary); cursor: pointer;">Выбрать</label>
+      </div>
+    </div>`;
   balloonsContainer.appendChild(card);
 });
 
@@ -678,7 +682,7 @@ document.getElementById('sendBtn').addEventListener('click', function(e){
   const guests = document.getElementById('guests').value.trim();
   const wishes = document.getElementById('wishes').value.trim();
   
-  // выбранный вариант
+  // выбранный вариант сервировки
   const selectedVariant = document.querySelector('input[name="selectedVariant"]:checked');
   const variantIndex = selectedVariant ? Number(selectedVariant.value) : null;
   
@@ -686,11 +690,15 @@ document.getElementById('sendBtn').addEventListener('click', function(e){
   const selectedShow = document.querySelector('input[name="show"]:checked');
   const showId = selectedShow ? selectedShow.value : '';
   
+  // выбранный фонтан
+  const selectedBalloon = document.querySelector('input[name="selectedBalloon"]:checked');
+  const balloonId = selectedBalloon ? selectedBalloon.value : '';
+  
   // валидация
   if(!phone){ document.getElementById('resultMsg').textContent='Укажите телефон'; return; }
   if(!name){ document.getElementById('resultMsg').textContent='Укажите имя именинника'; return; }
   
-  const payload = { phone, name, guests, variantIndex, showId, wishes };
+  const payload = { phone, name, guests, variantIndex, showId, balloonId, wishes };
   
   // демонстрация — в реале отправлять на сервер/скрипт
   console.log('PAYLOAD', payload);
