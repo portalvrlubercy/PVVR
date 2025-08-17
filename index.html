@@ -123,22 +123,76 @@
   }
   
   /* Улучшенный стиль для основного заголовка */
-  h1 {
-    margin: 0;
-    font-size: 24px;
-    color: var(--accent1);
-    text-shadow: 0 0 12px rgba(255,0,80,0.15);
-    font-family: var(--font-primary);
-    font-weight: 900;
-    letter-spacing: 0.5px;
-    
-    /* Добавляем фон и рамку */
-    padding: 8px 16px;
-    background: linear-gradient(90deg, rgba(255,0,80,0.1), rgba(30,140,255,0.1));
-    border-radius: 8px;
-    border: 1px solid rgba(255,0,80,0.2);
-    display: inline-block;
-  }
+ /* Улучшенный стиль для основного заголовка */
+h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff; /* Белый цвет для лучшей видимости */
+  text-shadow: 
+    0 0 20px rgba(255,0,80,0.8),
+    0 0 40px rgba(255,0,80,0.6),
+    2px 2px 4px rgba(0,0,0,0.8); /* Множественные тени */
+  font-family: var(--font-primary);
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  
+  /* Усиленный фон и рамка */
+  padding: 12px 20px;
+  background: linear-gradient(90deg, 
+    rgba(255,0,80,0.9), 
+    rgba(30,140,255,0.9), 
+    rgba(255,0,80,0.9)
+  );
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.3);
+  display: inline-block;
+  position: relative;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,0.8),
+    0 0 20px rgba(255,0,80,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* Эффект свечения вокруг заголовка */
+h1::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(45deg, 
+    rgba(255,0,80,0.6), 
+    rgba(30,140,255,0.6), 
+    rgba(255,0,80,0.6)
+  );
+  border-radius: 16px;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.8;
+}
+
+/* Анимация свечения */
+h1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255,255,255,0.4), 
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
   
   p.lead{
     margin:0;color:var(--muted);
