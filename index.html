@@ -240,17 +240,57 @@ h1 {
   .photo-caption{padding:8px;font-size:13px;color:#e6e6e6;text-align:center;font-family: var(--font-primary);}
   
   /* shows grid */
-  .shows-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
-  .show-card{border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(10,10,12,0.85),rgba(6,6,8,0.85));border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column}
-  .show-media {
-  height: 140px;
-  background-size: contain; /* Изменили с cover на contain */
-  background-position: center;
-  background-repeat: no-repeat; /* Добавили чтобы картинка не повторялась */
+.shows-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
 }
-  .show-body{padding:12px;flex:1;display:flex;flex-direction:column;gap:8px}
-  .show-title{font-weight:700;color:#e6e6e6;font-size:14px;font-family: var(--font-primary);}
-  .show-actions{margin-top:auto;display:flex;gap:8px;align-items:center}
+
+.show-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(18,18,20,0.7), rgba(12,12,14,0.7)); /* Как в сервировке */
+  border: 1px solid rgba(255,255,255,0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.show-media {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Квадратные как в сервировке */
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: 1024px) { 
+  .show-media { 
+    width: 300px; /* фиксированная ширина */
+    margin: 0 auto; /* центрируем */
+  } 
+}
+
+.show-body {
+  padding: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.show-title {
+  font-weight: 700;
+  color: #e6e6e6;
+  font-size: 14px;
+  font-family: var(--font-primary);
+}
+
+.show-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
   
   /* Улучшенные стили для кнопок */
   .btn {
