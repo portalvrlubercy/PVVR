@@ -677,6 +677,13 @@ shows.forEach(s => {
 /* ======= SEND (demo) ======= */
 document.getElementById('sendBtn').addEventListener('click', function(e){
   e.preventDefault();
+  
+  // Показываем загрузку
+  const btn = document.getElementById('sendBtn');
+  const originalText = btn.textContent;
+  btn.textContent = 'Отправляем...';
+  btn.disabled = true;
+  
   const phone = document.getElementById('phone').value.trim();
   const name = document.getElementById('birthdayName').value.trim();
   const guests = document.getElementById('guests').value.trim();
@@ -695,15 +702,63 @@ document.getElementById('sendBtn').addEventListener('click', function(e){
   const balloonId = selectedBalloon ? selectedBalloon.value : '';
   
   // валидация
-  if(!phone){ document.getElementById('resultMsg').textContent='Укажите телефон'; return; }
-  if(!name){ document.getElementById('resultMsg').textContent='Укажите имя именинника'; return; }
+  if(!phone){ 
+    document.getElementById('resultMsg').textContent='Укажите телефон'; 
+    btn.textContent = originalText;
+    btn.disabled = false;
+    return; 
+  }
+  if(!name){ 
+    document.getElementById('resultMsg').textContent='Укажите имя именинника'; 
+    btn.textContent = originalText;
+    btn.disabled = false;
+    return; 
+  }
   
   const payload = { phone, name, guests, variantIndex, showId, balloonId, wishes };
   
-  // демонстрация — в реале отправлять на сервер/скрипт
-  console.log('PAYLOAD', payload);
-  document.getElementById('resultMsg').textContent = 'Готово — данные сформированы (демо).';
-  // сюда можно добавить fetch(...) на реальный endpoint
+  // URL вашего нового Google Apps Script (замените на ваш новый URL)
+  const scriptUrl = 'ВАШ_НОВЫЙ_URL_РАЗВЕРТЫВАНИЯ';
+  
+  // Отправляем данные
+  fetch(scriptUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    // Показываем успех
+    document.getElementById('resultMsg').textContent = '✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.';
+    document.getElementById('resultMsg').style.color = '#4CAF50';
+    
+    // Очищаем форму
+    document.getElementById('phone').value = '';
+    document.getElementById('birthdayName').value = '';
+    document.getElementById('guests').value = '';
+    document.getElementById('wishes').value = '';
+    
+    // Сбрасываем выбор
+    if(selectedVariant) selectedVariant.checked = false;
+    if(selectedShow) selectedShow.checked = false;
+    if(selectedBalloon) selectedBalloon.checked = false;
+    
+    // Выбираем первый вариант сервировки по умолчанию
+    const firstVariant = document.querySelector('input[name="selectedVariant"]');
+    if(firstVariant) firstVariant.checked = true;
+  })
+  .catch(error => {
+    console.error('Ошибка отправки:', error);
+    document.getElementById('resultMsg').textContent = '❌ Ошибка отправки. Попробуйте еще раз.';
+    document.getElementById('resultMsg').style.color = '#f44336';
+  })
+  .finally(() => {
+    // Восстанавливаем кнопку
+    btn.textContent = originalText;
+    btn.disabled = false;
+  });
 });
 </script>
 </body>
