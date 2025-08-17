@@ -242,7 +242,12 @@ h1 {
   /* shows grid */
   .shows-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
   .show-card{border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(10,10,12,0.85),rgba(6,6,8,0.85));border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column}
-  .show-media{height:140px;background-size:cover;background-position:center}
+  .show-media {
+  height: 140px;
+  background-size: contain; /* Изменили с cover на contain */
+  background-position: center;
+  background-repeat: no-repeat; /* Добавили чтобы картинка не повторялась */
+}
   .show-body{padding:12px;flex:1;display:flex;flex-direction:column;gap:8px}
   .show-title{font-weight:700;color:#e6e6e6;font-size:14px;font-family: var(--font-primary);}
   .show-actions{margin-top:auto;display:flex;gap:8px;align-items:center}
@@ -286,21 +291,28 @@ h1 {
   
   .muted{color:var(--muted);font-size:13px;font-family: var(--font-primary);}
   
-  /* Улучшенные стили для ссылок */
-  .links a {
-    color: var(--accent2);
-    text-decoration: underline;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    padding: 4px 8px;
-    border-radius: 4px;
-    background: rgba(30,140,255,0.05);
-  }
+ /* Улучшенные стили для ссылок */
+.links a {
+  color: var(--accent2);
+  text-decoration: none; /* Убираем подчеркивание */
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(30,140,255,0.1), rgba(255,0,80,0.1));
+  border: 1px solid rgba(30,140,255,0.2);
+  display: inline-block;
+  position: relative;
+  font-family: var(--font-primary);
+}
 
-  .links a:hover {
-    background: rgba(30,140,255,0.1);
-    text-shadow: 0 0 8px rgba(30,140,255,0.3);
-  }
+.links a:hover {
+  background: linear-gradient(90deg, rgba(30,140,255,0.2), rgba(255,0,80,0.2));
+  text-shadow: 0 0 8px rgba(30,140,255,0.3);
+  border-color: rgba(30,140,255,0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30,140,255,0.2);
+}
   
   .submit-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
   .result{margin-left:12px;color:#bfeadf;font-weight:700;font-family: var(--font-primary);}
