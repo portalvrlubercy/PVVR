@@ -613,12 +613,16 @@ servirovka.forEach((photos, idx) => {
 });
 
 // Рендерим примеры шаров
+// Рендерим примеры шаров
 const balloonsContainer = document.getElementById('balloonsContainer');
-balloons.forEach((src, i) => {
+balloons.forEach((balloon, i) => {
   const card = document.createElement('div');
   card.className = 'photo-card';
-  card.innerHTML = `<div class="photo-thumb" style="background-image:url('${src}')"></div>
-                    <div class="photo-caption">Фонтан ${i+1}</div>`;
+  card.innerHTML = `<div class="photo-thumb" style="background-image:url('${balloon.media}')"></div>
+                    <div class="photo-caption">
+                      <div style="font-weight: 600; margin-bottom: 4px; font-family: var(--font-primary);">${balloon.title}</div>
+                      <div style="color: var(--accent1); font-weight: 700; font-family: var(--font-primary);">${balloon.price}</div>
+                    </div>`;
   balloonsContainer.appendChild(card);
 });
 
