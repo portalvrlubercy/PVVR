@@ -5,6 +5,47 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>PortalVR — Бронирование</title>
 <style>
+  /* Подключение шрифта Tactic Sans с GitHub */
+  @font-face {
+    font-family: 'TacticSans';
+    src: url('https://raw.githubusercontent.com/jjjxxx2016-creator/PVVR/main/Tactic%20Sans/TacticSans-Reg.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'TacticSans';
+    src: url('https://raw.githubusercontent.com/jjjxxx2016-creator/PVVR/main/Tactic%20Sans/TacticSans-Bld.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'TacticSans';
+    src: url('https://raw.githubusercontent.com/jjjxxx2016-creator/PVVR/main/Tactic%20Sans/TacticSans-Lgt.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'TacticSans';
+    src: url('https://raw.githubusercontent.com/jjjxxx2016-creator/PVVR/main/Tactic%20Sans/TacticSans-Med.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'TacticSans';
+    src: url('https://raw.githubusercontent.com/jjjxxx2016-creator/PVVR/main/Tactic%20Sans/TacticSans-Blk.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root{
     --bg1:#06060a;
     --bg2:#0f0f13;
@@ -13,40 +54,81 @@
     --card:#0f0f12;
     --input:#121212;
     --text:#eaeaea;
+    
+    /* Используем ваш шрифт */
+    --font-primary: 'TacticSans', sans-serif;
   }
+  
   html,body{
-  height:100%;
-  margin:0;
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('4acef07e-9517-4366-b3e0-8aaad63432f6.png') no-repeat center center fixed;
-  background-size: cover;
-  font-family: Inter,Segoe UI,Roboto,Arial,sans-serif;
-  color: var(--text);
-  font-size: 20px;
-}
+    height:100%;
+    margin:0;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('4acef07e-9517-4366-b3e0-8aaad63432f6.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: var(--font-primary);
+    color: var(--text);
+    font-size: 20px;
+    font-weight: normal;
+  }
+  
   .container{max-width:1100px;margin:24px auto;padding:20px;}
   header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  
   .logo {
     width:64px;height:64px;border-radius:12px;
     background:linear-gradient(135deg,var(--accent1),var(--accent2));
     box-shadow:0 8px 40px rgba(255,0,80,0.12);
-    display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size: 20px;
+    display:flex;align-items:center;justify-content:center;
+    font-weight: 900;
+    color:#fff;
+    font-size: 20px;
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
   }
-  h1{font-size:24px;margin:0;color:var(--accent1);text-shadow:0 0 12px rgba(255,0,80,0.15)}
-  p.lead{color:#cfcfcf;margin-top:6px;margin-bottom:18px}
+  
+  h1{
+    font-size:28px;
+    margin:0;
+    color:var(--accent1);
+    text-shadow:0 0 12px rgba(255,0,80,0.15);
+    font-family: var(--font-primary);
+    font-weight: 900;
+    letter-spacing: 0.5px;
+  }
+  
+  p.lead{
+    color:#cfcfcf;
+    margin-top:6px;
+    margin-bottom:18px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 18px;
+  }
 
   /* form card */
   .card{background:linear-gradient(180deg,rgba(10,10,12,0.9),rgba(6,6,8,0.85));border-radius:14px;padding:20px;border:1px solid rgba(255,0,80,0.06);box-shadow:0 12px 40px rgba(0,0,0,0.6)}
   .field{margin-bottom:14px}
-  .field label{display:block;color:#cfcfcf;margin-bottom:6px;font-size:14px}
+  .field label{display:block;color:#cfcfcf;margin-bottom:6px;font-size:14px;font-family: var(--font-primary);font-weight: 500;}
   .centered{display:flex;justify-content:center}
+  
   input[type="tel"], input[type="text"], input[type="number"], textarea{
     width:100%;max-width:560px;padding:12px;border-radius:10px;border:none;background:var(--input);color:var(--text);font-size:15px;box-shadow:inset 0 3px 18px rgba(0,0,0,0.6);
     outline:none;
+    font-family: var(--font-primary);
+    font-weight: normal;
   }
   textarea{min-height:96px;resize:vertical}
 
   /* heading for selection blocks */
-  .section-title{margin-top:22px;margin-bottom:12px;color:var(--accent2);font-size: 20px;text-shadow:0 0 8px rgba(30,140,255,0.08)}
+  .section-title{
+    margin-top:22px;
+    margin-bottom:12px;
+    color:var(--accent2);
+    font-size: 22px;
+    text-shadow:0 0 8px rgba(30,140,255,0.08);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
 
   /* options grid */
   .options-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
@@ -57,7 +139,7 @@
   }
   .card-option:hover{transform:translateY(-6px);box-shadow:0 10px 40px rgba(255,0,80,0.06)}
   .card-option .media{width:100%;height:140px;background-size:cover;background-position:center}
-  .card-option .caption{padding:10px;font-size:14px;color:#e6e6e6}
+  .card-option .caption{padding:10px;font-size:14px;color:#e6e6e6;font-family: var(--font-primary);}
   .card-option .more{font-size:12px;color:#bfcfff;text-decoration:underline;display:block;margin-top:6px}
 
   /* neon border effect via pseudo element */
@@ -74,14 +156,17 @@
   @keyframes shift {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
   /* small helpers */
-  .muted{color:#bdbdbd;font-size:13px}
+  .muted{color:#bdbdbd;font-size:13px;font-family: var(--font-primary);}
   .links a{color:#89bfff;text-decoration:underline}
   .submit-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
   .btn{
     padding:12px 18px;border-radius:12px;border:none;cursor:pointer;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--accent1),var(--accent2));
     background-size:200% 100%;animation:shift 3s linear infinite;box-shadow:0 12px 40px rgba(255,0,80,0.12);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: 0.5px;
   }
-  .result{margin-left:12px;color:#bfeadf;font-weight:700}
+  .result{margin-left:12px;color:#bfeadf;font-weight:700;font-family: var(--font-primary);}
 
   /* responsive */
   @media(max-width:720px){ .centered input{max-width:100%} .card-option .media{height:120px} }
@@ -241,7 +326,7 @@ const balloons = [
 const shows = [
   {
     id:'happybd',
-    title:'Развлекательная программа “Happy BDay” — 60 мин (8000 ₽)',
+    title:'Развлекательная программа "Happy BDay" — 60 мин (8000 ₽)',
     media:[
       'https://i.imgur.com/abc1234.jpg',
       'https://i.imgur.com/abc1234.jpg',
